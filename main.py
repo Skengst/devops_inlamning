@@ -53,8 +53,9 @@ def data_SMHI():
         samlad_data_dict["rainOrSnow"] = rain
         samlad_data_dict["provider"] ="SMHI"
         df = pd.DataFrame([samlad_data_dict])
-    
+    print (samlad_data_dict)
     return df, code, samlad_data_dict
+    
 
 
 def page():
@@ -81,4 +82,5 @@ def page():
         st.table(data_SMHI())
 
 if __name__ == "__main__":
-    page()
+    # page()
+    data_SMHI()
