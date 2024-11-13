@@ -82,5 +82,4 @@ def page():
         st.table(data_SMHI())
 
 if __name__ == "__main__":
-    # page()
-    data_SMHI()
+    page()
