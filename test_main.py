@@ -1,9 +1,10 @@
 from main import data_SMHI
 from datetime import datetime
 import pytest
-
-
-df, code, samlad_data_dict = data_SMHI()
+#Test lon och lat
+lon = 18.0215
+lat = 59.3099
+df, code, samlad_data_dict = data_SMHI(lon,lat)
 def test_API_response():
     assert code == 200, f"Expected status code 200, but got {code}"
 

@@ -4,10 +4,9 @@ import datetime
 import streamlit as st
 import pandas as pd
 
-def data_SMHI():
+def data_SMHI(lon,lat):
     now = datetime.datetime.now()
-    lon = 18.0215
-    lat = 59.3099
+
     formatted_datetime = now.strftime('%Y-%m-%d %H:%M:%S')
     URL = f"https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/{lon}/lat/{lat}/data.json"
     response = requests.get(URL)
@@ -67,7 +66,7 @@ def page():
     )
 
     st.write("You selected:", option)
-    df, code, samlad_data_dict = data_SMHI()
+    
     if option == "Kiruna":
         lon = 20.225
         lat = 67.855
@@ -77,8 +76,10 @@ def page():
     if option == "Ystad":
         lon = 13.820
         lat = 55.429
+    df, code, samlad_data_dict = data_SMHI(lon, lat)
     if st.button('Show weather! :cloud:'):
         st.balloons()
         st.table(df)
+    
 
 page()
