@@ -81,5 +81,4 @@ def page():
         st.balloons()
         st.table(data_SMHI())
 
-if __name__ == "__main__":
-    page()
+page()
