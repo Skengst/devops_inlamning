@@ -52,8 +52,12 @@ jobs:
       - name: Build Docker image
         run: docker build -t devops .
 
-      - name: Tag Docker image
+      - name: Tag Docker image with latest
         run: docker tag devops ${{ secrets.DOCKER_SAMUEL_USERNAME }}/devops:latest
+
+      - name: Tag Docker image with '1.1'
+        run: docker tag devops ${{ secrets.DOCKER_SAMUEL_USERNAME }}/devops:1.1
+
 
       # Step 5: Push the Docker image to Docker Hub
       - name: Push Docker image to Docker Hub
