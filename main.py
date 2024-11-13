@@ -53,7 +53,7 @@ def data_SMHI():
         samlad_data_dict["rainOrSnow"] = rain
         samlad_data_dict["provider"] ="SMHI"
         df = pd.DataFrame([samlad_data_dict])
-    print (samlad_data_dict)
+
     return df, code, samlad_data_dict
     
 
@@ -67,7 +67,7 @@ def page():
     )
 
     st.write("You selected:", option)
-
+    df, code, samlad_data_dict = data_SMHI()
     if option == "Kiruna":
         lon = 20.225
         lat = 67.855
@@ -79,6 +79,6 @@ def page():
         lat = 55.429
     if st.button('Show weather! :cloud:'):
         st.balloons()
-        st.table(data_SMHI())
+        st.table(df)
 
 page()
