@@ -79,7 +79,7 @@ jobs:
     needs: docker
     steps:
     - name: Upload error.log
-      if: always() && (failure() || github.events.inputs.ErrorLog == 'true')
+      if: always() && (github.events.inputs.ErrorLog == 'true')
       uses: actions/upload-artifact@v3
       with:
         name: error-log
