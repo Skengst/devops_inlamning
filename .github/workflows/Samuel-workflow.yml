@@ -45,7 +45,7 @@ jobs:
         pytest || true
         
     - name: Create Errorlog
-      if: failure || github.events.inputs.ErrorLog == 'true'
+      if: failure() || github.events.inputs.ErrorLog == 'true'
       run: |
         echo "Error log generated because of step error or user request." > error.log
         pytest >> error.log || true
