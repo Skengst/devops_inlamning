@@ -95,6 +95,8 @@ jobs:
   upload-Error-Log:
     runs-on: ubuntu-latest
     needs: docker
+    if: github.event.inputs.ErrorLog == 'true'
+   
     steps:
       - name: Download error log artifact
         uses: actions/download-artifact@v3
@@ -102,7 +104,6 @@ jobs:
           name: error-log
           
       - name: Upload error log
-        if: github.event.inputs.ErrorLog == 'true'
         uses: actions/upload-artifact@v3
         with:
           name: error-log
