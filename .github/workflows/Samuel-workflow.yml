@@ -41,7 +41,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     
     - name: Create Errorlog
-      if: github.events.inputs.ErrorLog == 'true'
+      if: github.event.inputs.ErrorLog == 'true'
       run: |
         echo "Error log generated because of user request." > error.log
         
@@ -50,7 +50,7 @@ jobs:
         pytest || "Pytest Failed" >> error.log
 
     - name: Generate pytest error details.
-      if: failure() || github.events.inputs.ErrorLog == 'true'
+      if: failure() || github.event.inputs.ErrorLog == 'true'
       run: | 
         pytest >> error.log || true
         
@@ -87,7 +87,7 @@ jobs:
     needs: docker
     steps:
     - name: Upload error.log
-      if: always() && (github.events.inputs.ErrorLog == 'true')
+      if: always() && (github.event.inputs.ErrorLog == 'true')
       uses: actions/upload-artifact@v3
       with:
         name: error-log
