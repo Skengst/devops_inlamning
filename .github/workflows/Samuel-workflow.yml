@@ -76,6 +76,7 @@ jobs:
   upload-Error-Log:
     name: Upload Error log
     runs-on: ubuntu-latest
+    needs: docker
     steps:
     - name: Upload error.log
       if: always() && (failure() || github.events.inputs.ErrorLog == 'true')
