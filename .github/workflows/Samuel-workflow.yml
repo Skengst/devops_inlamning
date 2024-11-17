@@ -55,6 +55,7 @@ jobs:
         pytest >> error.log || true
     
     - name: Upload error log artifact
+      if: github.event.inputs.ErrorLog == 'true'
       uses: actions/upload-artifact@v3
       with:
         name: error-log
@@ -85,6 +86,7 @@ jobs:
         run: docker push ${{ secrets.DOCKER_SAMUEL_USERNAME }}/devops:latest || echo "Docker push failed" >> error.log
       
       - name: Upload error log artifact
+        if: github.event.inputs.ErrorLog == 'true'
         uses: actions/upload-artifact@v3
         with:
           name: error-log
